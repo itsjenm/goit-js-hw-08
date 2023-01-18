@@ -33,8 +33,6 @@ function loadForm() {
    const savedValues = JSON.parse(localStorage.getItem("feedback-form-state"));
    console.log(savedValues)
    if (savedValues) {
-    email.value = savedValues.email; 
-    message.value = savedValues.message;
     form.elements.email.value = savedValues.email;
     form.elements.message.value = savedValues.message;
    }

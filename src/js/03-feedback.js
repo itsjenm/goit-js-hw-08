@@ -15,7 +15,7 @@ loadForm();
 function saveData(event) {
     LOCALSTORAGE_KEY[event.target.name] = event.target.value;
     localStorage.setItem("feedback-form-state", JSON.stringify(LOCALSTORAGE_KEY));
-    console.log(LOCALSTORAGE_KEY)
+    // console.log(LOCALSTORAGE_KEY)
     
 }
 
@@ -23,20 +23,17 @@ function saveData(event) {
 
 function handleSubmit(event) {
     event.preventDefault();
-    console.log(JSON.parse(localStorage.getItem("feedback-form")));
     event.currentTarget.reset();
-    
+    console.log(JSON.parse(localStorage.getItem("feedback-form-state")))
+    localStorage.clear();
 }
 
 
 function loadForm() {
-   const savedValues = JSON.parse(localStorage.getItem("feedback-form-state"));
-   console.log(savedValues)
+   let savedValues = JSON.parse(localStorage.getItem("feedback-form-state"));
+//    console.log(savedValues)
    if (savedValues) {
-    form.elements.email.value = savedValues.email;
-    form.elements.message.value = savedValues.message;
-   } else if (savedValues == null || "") {
-        savedValues = target.value;
-   }
-   
+    form.elements.email.value =  savedValues.email || ""; 
+    form.elements.message.value = savedValues.message || "";
+   } 
 }
